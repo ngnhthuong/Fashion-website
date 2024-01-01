@@ -93,62 +93,6 @@
                     }
                     break;
             }
-          // delete client
-          // case 'del_client':
-          // {
-
-          //     if(isset($_GET['id']))
-          //     {
-          //       $id=$_GET['id'];
-          //       echo '<script>
-          //         if (confirm("Do you want to delete client?")) {
-          //             window.location.href = "admin.php?act=delete_client_sc&id=' . $id . '";
-          //         } else {
-          //             window.location.href = "admin.php?act=delete_client_fl";
-          //         }
-          //       </script>';
-          //     } else {
-          //       $kq = getall_client();
-          //       include ("client.php");
-          //       echo '<script>
-          //           alert("Delete client failure!");
-          //       </script>';
-          //     }
-          //     break;
-          // }
-          // case 'delete_client_fl':
-          //   {
-          //     $kq = getall_client();
-          //     include ("client.php");
-          //     echo '<script>
-          //           alert("Cancelled!");
-          //       </script>';
-          //     break;
-          //   }
-          //   case 'delete_client_sc':
-          //   {
-          //     if(isset($_GET['id']) && ($_GET['id'] != ""))
-          //     {
-          //       $id = $_GET['id'];
-          //       delete_client($id);
-          //       $kq = getall_client();
-          //       include ("client.php");
-          //       echo '<script>
-          //           alert("Delete client Sucessed!");
-          //       </script>';
-          //     }
-          //     else{
-          //       $kq = getall_client();
-          //       include ("client.php");
-          //       echo '<script>
-          //           alert("Delete client Failure!");
-          //       </script>';
-          //     }
-          //     break;
-          //   }
-          
-          
-              
             // Update client
             case 'updateform_client':
               {
@@ -628,24 +572,44 @@
                             update_product_quantity($existing_product['id_product'], $new_quantity);
                             $checkExistQuantity = true;
                           } else {
+                              if($id_pd == 0){
+                                $dmsp = getall_catalog();
+                                $dmee = getall_user();
+                                $dmsup = getall_supplier();
+                                $kq = getall_product();
+                                include("product.php");
+                                echo '<script>
+                                alert("Catalog doesnt exist!");
+                                </script>';                              
+                              } else if($sup_pd == 0) {
+                                $dmsp = getall_catalog();
+                                $dmee = getall_user();
+                                $dmsup = getall_supplier();
+                                $kq = getall_product();
+                                include("product.php");
+                                echo '<script>
+                                alert("Supplier doesnt exist!");
+                                </script>'; 
+                              } else {
+                                insert_product($id_pd, $quantity_pd, $name_pd, $prices_pd, $img_pd, $id_ee, $sup_pd, $oldprices_pd, $view_pd, $special_pd, $description_pd, $size_pd);
+                                $dmsp = getall_catalog();
+                                $dmee = getall_user();
+                                $dmsup = getall_supplier();
+                                $kq = getall_product();
+                                include("product.php");
+                                if($checkExistQuantity){
+                                  echo '<script>
+                                  alert("Existed, the quantity is updated!");
+                                  </script>';
+                                  $checkExistQuantity = false;
+                                } else {
+                                  echo '<script>
+                                  alert("Insert Product Succeeded!");
+                                  </script>';
+                                }
+                              }
                               // Thêm sản phẩm mới vào cơ sở dữ liệu
-                              insert_product($id_pd, $quantity_pd, $name_pd, $prices_pd, $img_pd, $id_ee, $sup_pd, $oldprices_pd, $view_pd, $special_pd, $description_pd, $size_pd);
                           }                        
-                          $dmsp = getall_catalog();
-                          $dmee = getall_user();
-                          $dmsup = getall_supplier();
-                          $kq = getall_product();
-                          include("product.php");
-                          if($checkExistQuantity){
-                            echo '<script>
-                            alert("Existed, the quantity is updated!");
-                            </script>';
-                            $checkExistQuantity = false;
-                          } else {
-                            echo '<script>
-                            alert("Insert Product Succeeded!");
-                            </script>';
-                          }
                       } else {
                           $dmsp = getall_catalog();
                           $dmee = getall_user();
