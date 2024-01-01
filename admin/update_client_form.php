@@ -10,13 +10,12 @@ function validateForm() {
     var password = document.getElementsByName("password_c")[0].value;
     var ban = document.getElementsByName("ban_c")[0].value;
 
-
     if (lname == "") {
         alert("Please fill out last name!");
         return false;
     }
     if (fname == "") {
-        alert("Please fill out fname name!");
+        alert("Please fill out first name!");
         return false;
     }
     if (sex == 0) {
@@ -31,6 +30,14 @@ function validateForm() {
         alert("Please fill out email!");
         return false;
     }
+
+    // Check if the email has a valid format
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address!");
+        return false;
+    }
+
     if (phone == "") {
         alert("Please fill out phone!");
         return false;
@@ -48,7 +55,7 @@ function validateForm() {
         return false;
     }
     if (ban != "0" && ban != "1") {
-        alert("Please enter ban true fomat!!");
+        alert("Please enter ban true format!!");
         return false;
     }
     return true;

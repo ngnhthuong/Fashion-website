@@ -10,8 +10,16 @@ function validateForm() {
         alert("Please choose employee entry!");
         return false;
     }
+
     if (email == "") {
         alert("Please fill out client email!");
+        return false;
+    }
+
+    // Check if the email has a valid format
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address!");
         return false;
     }
 
@@ -29,6 +37,7 @@ function validateForm() {
         alert("Please fill out client address!");
         return false;
     }
+
     return true;
 }
 </script>
