@@ -1,0 +1,30 @@
+{
+    "name": "datatables.net-responsive-se",
+    "version": "2.2.7",
+    "description": "Responsive for DataTables with styling for [Semantic UI](http://semantic-ui.com/)",
+    "files": [
+        "css/**/*.css",
+        "js/**/*.js"
+    ],
+    "main": "js/responsive.semanticui.js",
+    "keywords": [
+        "responsive",
+        "DataTables",
+        "jQuery",
+        "table",
+        "Semantic UI"
+    ],
+    "homepage": "https://datatables.net",
+    "bugs": "https://datatables.net/forums",
+    "license": "MIT",
+    "author": {
+        "name": "SpryMedia Ltd",
+        "url": "http://datatables.net"
+    },
+    "dependencies": {
+        "jquery": ">=1.7",
+        "datatables.net-se": "^1.10.15",
+        "datatables.net-responsive": "2.2.7"
+    },
+    "style": "css/responsive.semanticui.css"
+}
